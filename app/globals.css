@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+:root {
+
+  --primary: #006e86;
+  --primary-container: #85dbf8;
+  --on-primary: #ffffff;
+  --on-primary-container: #004c5e;
+
+
+  --secondary: #097342;
+  --secondary-container: #9af6b8;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #005f34;
+
+
+  --tertiary: #945517;
+  --tertiary-container: #feac67;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #5c2f00;
+
+
+  --background: #ffffff;
+  --on-background: #373928;
+  --surface: #fefee5;
+  --surface-container-low: #fbfbe0;
+  --surface-container: #f5f6d9;
+  --surface-container-high: #eff0d1;
+  --surface-container-highest: #e9eaca;
+  --on-surface: #373928;
+  --on-surface-variant: #646652;
+
+
+  --outline: #81826d;
+  --outline-variant: #babba4;
+
+}
+
+
+.dark {
+  --primary: #85dbf8;
+  --primary-container: #00566a;
+  --on-primary: #003745;
+  --on-primary-container: #85dbf8;
+
+  --secondary: #9af6b8;
+  --secondary-container: #006a3b;
+  --on-secondary: #004a28;
+  --on-secondary-container: #9af6b8;
+
+  --tertiary: #feac67;
+  --tertiary-container: #693600;
+  --on-tertiary: #3d1d00;
+  --on-tertiary-container: #feac67;
+
+  --background: #0e0f03;
+  --on-background: #e9eaca;
+  --surface: #1a1c0f;
+  --surface-container-low: #1f2112;
+  --surface-container: #252718;
+  --surface-container-high: #2f3122;
+  --surface-container-highest: #3a3c2d;
+  --on-surface: #e9eaca;
+  --on-surface-variant: #babba4;
+
+  --outline: #9e9e88;
+  --outline-variant: #646652;
+}
+
+
+@theme inline {
+
+  --font-headline: var(--font-plus-jakarta-sans);
+  --font-body: var(--font-be-vietnam-pro);
+
+
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-container: var(--on-primary-container);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+  --color-surface: var(--surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+}
+
+html, body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+
+.game-viewport {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+
+@keyframes valid-pop {
+  0% { transform: scale(1.25); }
+  10% { transform: scale(1.25); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+
+@keyframes wildcard-hint-wipe {
+  0% { transform: translate(-120%, -120%); opacity: 0; }
+  8% { opacity: 0.6; }
+  34% { transform: translate(120%, 120%); opacity: 0.6; }
+  44% { opacity: 0; }
+  100% { transform: translate(120%, 120%); opacity: 0; }
+}
+
+.wildcard-hint-wipe {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(255, 107, 107, 0.00) 32%,
+    rgba(255, 107, 107, 0.55) 38%,
+    rgba(255, 170, 107, 0.55) 45%,
+    rgba(255, 217, 107, 0.55) 52%,
+    rgba(107, 255, 142, 0.55) 59%,
+    rgba(107, 195, 255, 0.55) 66%,
+    rgba(176, 107, 255, 0.55) 73%,
+    rgba(255, 107, 239, 0.55) 80%,
+    rgba(255, 255, 255, 0.42) 84%,
+    rgba(255, 255, 255, 0) 90%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mix-blend-mode: multiply;
+  filter: blur(1px) saturate(1.1);
+  animation: wildcard-hint-wipe 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wildcard-hint-wipe {
+    animation: none;
+  }
+}
